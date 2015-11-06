@@ -208,18 +208,18 @@ for fasta_filepath in fasta_files:
                         del_type = deletions['del_type_extractor'](deletions['available_del_types'])
                         del_args = deletions['del_args']('doDeletion', sequence, del_type)
                         sequence = deletions['doDeletion'](*del_args)
-                # insertions
-                if insertions['do'] is True:
-                    for i in range(0, insertions['ins_calls_per_sequence'](len_seq, insertions['one_each_n_neclotides'])):
-                        ins_type = insertions['ins_type_extractor'](insertions['available_ins_types'])
-                        ins_args = insertions['ins_args']('doInsertion', sequence, ins_type)
-                        sequence = insertions['doInsertion'](*ins_args)
                 # mutations
                 if mutations['do'] is True:
                     for i in range(0, mutations['mut_calls_per_sequence'](len_seq, mutations['one_each_n_neclotides'])):
                         mut_type = mutations['mut_type_extractor'](mutations['available_mut_types'])
                         mut_args = mutations['mut_args']('doMutation', sequence, mut_type)
                         sequence = mutations['doMutation'](*mut_args)
+                # insertions
+                if insertions['do'] is True:
+                    for i in range(0, insertions['ins_calls_per_sequence'](len_seq, insertions['one_each_n_neclotides'])):
+                        ins_type = insertions['ins_type_extractor'](insertions['available_ins_types'])
+                        ins_args = insertions['ins_args']('doInsertion', sequence, ins_type)
+                        sequence = insertions['doInsertion'](*ins_args)
                 # Newline
                 sequence = sequence + "\n"
                 # Final append
